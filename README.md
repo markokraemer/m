@@ -17,37 +17,28 @@ Matrix, just by typing 'm' in your terminal. So you can quickly pull it up for j
 4. Add the following code to your `.zshrc`:
 
    ```zsh
-# Function to resize terminal and run matrix.py
-run_matrix() {
-  # Get screen size
-  screen_size=$(stty size)
-  rows=$(echo $screen_size | cut -d' ' -f1)
-  cols=$(echo $screen_size | cut -d' ' -f2)
-  
-  # Resize terminal to maximum size (works for iTerm2 and Terminal.app)
-  printf '\e[8;'$rows';'$cols't'
-  
-  # Clear the screen
-  clear
-  
-  # Hide the cursor
-  tput civis
-  
-  # Run the matrix script
-  python /Users/markokraemer/Desktop/matrix.py
-  
-  # Restore cursor
-  tput cnorm
-  
-  # Clear the screen again
-  clear
-    }
+   run_matrix() {
+     screen_size=$(stty size)
+     rows=$(echo $screen_size | cut -d' ' -f1)
+     cols=$(echo $screen_size | cut -d' ' -f2)
+     
+     printf '\e[8;'$rows';'$cols't'
+     
+     clear
+     
+     tput civis
+     
+     python /Users/markokraemer/Desktop/matrix.py
+     
+     tput cnorm
+     
+     clear
+   }
 
-# Alias 'm' to run the matrix function
-alias m='run_matrix'
+   alias m='run_matrix'
    ```
 
-5. Replace `/path/to/your/matrix.py` with the actual path to your `matrix.py` file.
+5. Replace `/Users/markokraemer/Desktop/matrix.py` with the actual path to your `matrix.py` file.
 
 6. Save and exit the editor (in nano, press Ctrl+X, then Y, and Enter).
 
